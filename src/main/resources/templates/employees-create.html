@@ -7,45 +7,98 @@
 </head>
 <style>
   body {
-    background-color: #f8f9fa;
-    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+
   }
+
+  main {
+    flex-grow: 1;
+  }
+
   .container {
+    margin-top:20px;
+    margin-left: 450px;
     max-width: 500px;
-    margin: 0 auto;
+    align-items: center;
     padding: 20px;
-    background-color: #ffffff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: #0069d9;
+    border-radius: 14px;
+    border-color: yellow;
+    background-color: beige;
   }
+
   .form-group {
     margin-bottom: 20px;
   }
 
   label {
+    display: block;
     font-weight: bold;
+    margin-bottom: 5px;
   }
 
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"] {
+  .form-control {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ced4da;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
     border-radius: 4px;
   }
+
   .text-danger {
     color: red;
+    font-size: 14px;
+    margin-top: 5px;
   }
 
   .btn-primary {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
     background-color: #007bff;
-    border-color: #007bff;
+    color: #fff;
+    cursor: pointer;
   }
+  .btn-warning {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    background-color:darkorange;
+    color: #fff;
+    cursor: pointer;
+  }
+  .back-button {
+    display: inline-block;
+    padding: 8px 16px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 4px;
+    transition: opacity 0.3s;
+    margin-left:330px;
+    font-family: Arial;
+  }
+  .back-button:hover {
+    opacity: 0.7;
+  }
+
 
   .btn-primary:hover {
     background-color: #0069d9;
-    border-color: #0062cc;
   }
 
 </style>
@@ -122,7 +175,8 @@
                   placeholder="1234 Main St">
           <p th:if="${#fields.hasErrors('address')}" class="text-danger" th:errors="*{address}"></p>
         </div>
-        <button type="submit" class="btn btn-primary">Create</button>
+        <button type="submit" class="btn btn-primary submit">Create</button>
+        <a th:href="@{/employees}" class="btn btn-warning back-button">Back</a>
       </form>
     </div>
   </section>

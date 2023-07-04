@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.EmployeeDto;
 import com.example.demo.models.Employee;
+import com.example.demo.security.SecurityUtil;
 import com.example.demo.service.EmployeeService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +24,19 @@ public class EmployeeController {
 
     @GetMapping("/employees")
     public String listEmployees(Model model){
+        String username = SecurityUtil.getSessionUser();
+        if(username==null)
+            return "redirect:/login";
+
         List<EmployeeDto> employees = employeeService.findAllEmployees();
         model.addAttribute("employees",employees);
         return "employees-list";
     }
     @GetMapping("/employees/search")
     public String searchEmployees(@RequestParam(value = "query") String query, Model model){
+        String username = SecurityUtil.getSessionUser();
+        if(username==null)
+            return "redirect:/login";
         List<EmployeeDto> employees = employeeService.searchEmployees(query);
         model.addAttribute("employees",employees);
         return "employees-list";
@@ -36,6 +44,9 @@ public class EmployeeController {
 
     @GetMapping("/employees/new")
     public String createEmployees(Model model){
+        String username = SecurityUtil.getSessionUser();
+        if(username==null)
+            return "redirect:/login";
         Employee employee = new Employee();
         model.addAttribute("employee",employee);
         return "employees-create";
@@ -59,6 +70,9 @@ public class EmployeeController {
 
     @GetMapping("employees/{employeeId}/edit")
     public String editEmployeeForm(@PathVariable("employeeId") Long employeeId, Model model ){
+        String username = SecurityUtil.getSessionUser();
+        if(username==null)
+            return "redirect:/login";
         EmployeeDto employeeDto = employeeService.findEmployeeById(employeeId);
         model.addAttribute("employee",employeeDto);
         return "employees-edit";
@@ -75,12 +89,18 @@ public class EmployeeController {
     }
     @GetMapping("/employees/{employeeId}/delete")
     public String deleteEmployee(@PathVariable("employeeId") Long employeeId, Model model){
+        String username = SecurityUtil.getSessionUser();
+        if(username==null)
+            return "redirect:/login";
         EmployeeDto employeeDto = employeeService.findEmployeeById(employeeId);
         model.addAttribute("employee", employeeDto);
         return "employees-delete";
     }
     @GetMapping("/employees/{employeeId}/delete/confirm")
     public String deleteEmployeeConfirm(@PathVariable("employeeId") Long employeeId, Model model){
+        String username = SecurityUtil.getSessionUser();
+        if(username==null)
+            return "redirect:/login";
 
         employeeService.delete(employeeId);
         return "redirect:/employees";

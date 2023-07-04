@@ -49,6 +49,6 @@ public class AuthController {
             return "register";
         }
         userService.saveUser(user);
-        return "redirect:/employees?success";
+        return "redirect:/login";
     }
 }
