@@ -1,0 +1,82 @@
+<html
+        xmlns:th="http://thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+<head>
+  <title>Employee Details</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .header {
+    padding: 5rem 0;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    margin-bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  .card {
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: bolder;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    width: 500px;
+  }
+
+
+  .text-center {
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+</style>
+</head>
+<body class="d-flex flex-column">
+<section layout:fragment="body">
+  <header class="header">
+    <div class="container">
+      <div class="card">
+        <h1 style="text-align: center">Employee Details</h1>
+        <p th:text="${employee.name}"></p>
+        <p th:text="${employee.email}"></p>
+        <p th:text="${employee.address}"></p>
+        <p th:text="${employee.mobile}"></p>
+        <p th:text="${employee.designation}"></p>
+        <p th:text="${employee.department}"></p>
+
+      </div>
+      <a th:href="@{/employees}"class="btn btn-link nav-link" type="submit">BACK</a>
+
+    </div>
+  </header>
+</section>
+</body>
+</html>
