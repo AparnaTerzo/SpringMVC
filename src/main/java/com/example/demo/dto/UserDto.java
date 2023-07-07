@@ -4,12 +4,12 @@ import lombok.Data;
 
 
 @Data
-public class RegistrationDto {
+public class UserDto {
     private Long id;
     @NotEmpty
     private String username;
     @NotEmpty
-    private String email;
-    @NotEmpty
     private String password;
+    @NotEmpty
+    private String role;
 }
