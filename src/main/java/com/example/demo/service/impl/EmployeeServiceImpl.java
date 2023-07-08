@@ -29,11 +29,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee = mapToEmployee(employeeDto);
         return employeeRepository.save(employee);
     }
-    @Override
-    public List<EmployeeDto> searchEmployees(String query) {
-        List<Employee> employees= employeeRepository.searchEmployees(query);
-        return employees.stream().map(employee -> mapToEmployeeDto(employee)).collect(Collectors.toList());
-    }
+  
 
     @Override
     public EmployeeDto findEmployeeById(Long employeeId) {
