@@ -20,12 +20,18 @@ public class DemoSecurityConfig {
 
         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
 
-
+//
+//        jdbcUserDetailsManager.setUsersByUsernameQuery(
+//                "select user_id,password,active from users where user_id=?");
+//
+//        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(
+//                "select user_id,role from roles where user_id=?");
         jdbcUserDetailsManager.setUsersByUsernameQuery(
-                "select user_id,password,active from users where user_id=?");
+                "select username, password, active from users where username=?");
 
+        // define query to retrieve the authorities/roles by username
         jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(
-                "select user_id,role from roles where user_id=?");
+                "select username, role from authority where username=?");
         return jdbcUserDetailsManager;
     }
 
@@ -33,10 +39,10 @@ public class DemoSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.authorizeHttpRequests(configurer ->
                 configurer
-                        .requestMatchers(HttpMethod.GET, "/api/employees").hasRole("EMPLOYEE")
-                        .requestMatchers(HttpMethod.GET, "/api/employees/**").hasRole("EMPLOYEE")
-                        .requestMatchers(HttpMethod.POST, "/api/employees/new").hasRole("MANAGER")
-                        .requestMatchers(HttpMethod.PUT, "/api/employees/**").hasRole("MANAGER")
+                        .requestMatchers(HttpMethod.GET, "/api/employees").hasAnyRole("EMPLOYEE","MANAGER","ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/employees/**").hasAnyRole("EMPLOYEE","MANAGER","ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/employees/new").hasAnyRole("MANAGER","ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/employees/**").hasAnyRole("ADMIN","MANAGER")
                         .requestMatchers(HttpMethod.DELETE, "/api/employees/**").hasRole("ADMIN")
         );
 

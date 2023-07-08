@@ -2,7 +2,7 @@ package com.example.demo.service.impl;
 
 
 import com.example.demo.dto.UserDto;
-import com.example.demo.models.User;
+import com.example.demo.models.Users;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,23 +24,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void saveUser(User registrationDto) {
-        User user = new User();
-        user.setUsername(registrationDto.getUsername());
-        user.setPassword(registrationDto.getPassword());
-        user.setRole(registrationDto.getRole());
-        userRepository.save(user);
+    public void saveUser(Users users) {
+
+        userRepository.save(users);
     }
 
-    @Override
-    public User findByEmail(String email) {
-        return null;
-    }
-
-    @Override
-    public User findByUsername(String username) {
-        return null;
-    }
 
 
 }

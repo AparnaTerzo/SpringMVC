@@ -1,15 +1,16 @@
 package com.example.demo.dto;
-import jakarta.validation.constraints.NotEmpty;
-import lombok.Data;
+import com.example.demo.models.Authority;
 
+import com.example.demo.models.Users;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserDto {
-    private Long id;
-    @NotEmpty
-    private String username;
-    @NotEmpty
-    private String password;
-    @NotEmpty
-    private String role;
+    private Users users;
+    private Authority authority;
 }
