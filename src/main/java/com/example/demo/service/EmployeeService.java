@@ -10,8 +10,6 @@ public interface EmployeeService {
 
     List<EmployeeDto> findAllEmployees();
 
-    List<EmployeeDto> searchEmployees(String query);
-
     void updateEmployee(EmployeeDto employee);
 
     EmployeeDto findEmployeeById(Long employeeId);
