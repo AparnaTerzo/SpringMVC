@@ -21,5 +21,6 @@ public class EmployeeDto {
     private String designation;
     private Long mobile;
     private String address;
+    @NotEmpty(message = "Department must be filled")
     private String department;
 }
